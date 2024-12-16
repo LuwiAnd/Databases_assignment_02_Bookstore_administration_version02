@@ -8,17 +8,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bookstore.Infrastructure.Data.Model;
+using Bookstore.Presentation.ViewModel;
 
-namespace Databases_assignment_02_Bookstore_administration_version02
+namespace Databases_assignment_02_Bookstore_administration_version02;
+//namespace Bookstore.Presentation;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        // Test
+        //using var db = new BookStoreContext();
+        //var stockBalance = db.StockBalances.ToList();
+
+        DataContext = new MainWindowViewModel();
     }
 }

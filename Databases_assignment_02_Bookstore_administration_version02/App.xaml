@@ -1,9 +1,11 @@
-﻿<Application x:Class="Databases_assignment_02_Bookstore_administration_version02.App"
+﻿<Application x:Class="Bookstore.Presentation.ViewModel.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Databases_assignment_02_Bookstore_administration_version02"
+             xmlns:local="clr-namespace:Bookstore.Presentation.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+<!--<Application x:Class="Databases_assignment_02_Bookstore_administration_version02.App"-->
+             <!--xmlns:local="clr-namespace:Databases_assignment_02_Bookstore_administration_version02"-->
          
     </Application.Resources>
 </Application>
