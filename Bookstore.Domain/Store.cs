@@ -25,4 +25,5 @@ public partial class Store
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<StockBalance> StockBalances { get; set; } = new List<StockBalance>();
+    
 }

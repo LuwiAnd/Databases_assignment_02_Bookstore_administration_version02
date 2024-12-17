@@ -10,4 +10,5 @@ namespace Bookstore.Presentation.ViewModel;
 /// </summary>
 public partial class App : Application
 {
+    
 }

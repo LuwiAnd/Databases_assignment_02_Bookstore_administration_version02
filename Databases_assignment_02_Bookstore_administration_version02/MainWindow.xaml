@@ -22,9 +22,25 @@
                       Margin="10"
                       VerticalAlignment="Center"
                       ItemsSource="{Binding StoreNames}"
+                      SelectedItem="{Binding SelectedStore}"
                       />
         </StackPanel>
 
-        <DataGrid Grid.Row="1"></DataGrid>
+        <DataGrid Grid.Row="1"
+          AutoGenerateColumns="False"
+          ItemsSource="{Binding StockBalances}">
+            <DataGrid.Columns>
+                <!-- Column for Store Name -->
+                <!--<DataGridTextColumn Header="Store Id" Binding="{Binding StoreId}" />-->
+
+                <!-- Column for ISBN13 -->
+                <DataGridTextColumn Header="ISBN13" Binding="{Binding Isbn13}" />
+
+                <!-- Column for Count -->
+                <DataGridTextColumn Header="Count" Binding="{Binding Count}" />
+                <DataGridTextColumn Header="Book" Binding="{Binding Isbn13Navigation.Title}" />
+                <DataGridTextColumn Header="Store" Binding="{Binding Store.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
