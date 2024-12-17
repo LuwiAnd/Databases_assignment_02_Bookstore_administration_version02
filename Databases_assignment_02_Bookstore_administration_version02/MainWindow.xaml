@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=UI:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="450" Width="800">
-<!--<Window x:Class="Bookstore.Presentation.ViewModel.MainWindow"-->
-        <!--xmlns:local="clr-namespace:Bookstore.Presentation.ViewModel"-->
+    <!--<Window x:Class="Bookstore.Presentation.ViewModel.MainWindow"-->
+    <!--xmlns:local="clr-namespace:Bookstore.Presentation.ViewModel"-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -24,11 +24,28 @@
                       ItemsSource="{Binding StoreNames}"
                       SelectedItem="{Binding SelectedStore}"
                       />
+
+            <Button x:Name="RemoveButton"
+                    Content="Remove Book"
+                    Width="100"
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    Click="RemoveButton_Click"
+                    />
+            
+            <Button x:Name="AddButton"
+                    Content="Add a Book"
+                    Width="100"
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    Click="AddButton_Click"
+                    />
         </StackPanel>
 
         <DataGrid Grid.Row="1"
           AutoGenerateColumns="False"
-          ItemsSource="{Binding StockBalances}">
+          ItemsSource="{Binding StockBalances}"
+          SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <!-- Column for Store Name -->
                 <!--<DataGridTextColumn Header="Store Id" Binding="{Binding StoreId}" />-->

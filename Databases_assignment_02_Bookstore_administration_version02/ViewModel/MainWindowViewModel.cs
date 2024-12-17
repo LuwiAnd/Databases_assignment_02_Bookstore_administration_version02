@@ -62,7 +62,8 @@ namespace Bookstore.Presentation.ViewModel
         }
 
 
-        private void LoadStockBalances()
+        //private void LoadStockBalances()
+        public void LoadStockBalances()
         {
             using var db = new BookStoreContext();
 
