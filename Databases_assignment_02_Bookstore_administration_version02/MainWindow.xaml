@@ -34,8 +34,8 @@
                     />
             
             <Button x:Name="AddButton"
-                    Content="Add a Book"
-                    Width="100"
+                    Content="Add/Update stock balace for a Book"
+                    Width="200"
                     Margin="10"
                     VerticalAlignment="Center"
                     Click="AddButton_Click"
