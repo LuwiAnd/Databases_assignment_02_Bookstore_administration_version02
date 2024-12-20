@@ -25,8 +25,10 @@ namespace Bookstore.Presentation
     /// </summary>
     public partial class AddStockBalanceDialog : Window, INotifyPropertyChanged
     {
-        // Jag tror inte att jag använder den här variabeln.
-        private readonly BookStoreContext _db;
+        // Jag tror inte att man bör göra en sån här variabel, för man vill inte
+        // ha en öppen connection till sin databas så länge.
+        // Fråga Fredrik!! ??!!???
+        //private readonly BookStoreContext _db;
 
         private string? _selectedAuthor;
         private string? _selectedBookTitle;
@@ -136,10 +138,9 @@ namespace Bookstore.Presentation
             }
         }
 
-        // Jag ska nog göra en till konstruktor som tar emot ett ISBN-nummer från den bok man eventuellt markerat.
+        
         public AddStockBalanceDialog(int selectedStoreId)
         {
-            //selectedStoreId = 1; // Detta ska jag ändra sen!! ??!!???
             this.selectedStoreId = selectedStoreId;
 
 
@@ -168,7 +169,7 @@ namespace Bookstore.Presentation
         }
 
 
-        public AddStockBalanceDialog(StockBalance? initialStockBalance)
+        public AddStockBalanceDialog(StockBalance initialStockBalance)
         {
 
             this.selectedStoreId = initialStockBalance.StoreId;
@@ -187,7 +188,6 @@ namespace Bookstore.Presentation
             BookTitles = new ObservableCollection<string>(bookTitles);
 
 
-            //SelectedBookTitle = BookTitles.FirstOrDefault();
             SelectedBookTitle = db.Books
                 .Where(b => b.Isbn13 == initialStockBalance.Isbn13)
                 .Select(b => b.Title)
@@ -206,38 +206,14 @@ namespace Bookstore.Presentation
             SelectedIsbn = initialStockBalance.Isbn13;
 
             DataContext = this;
-            //Istället för allt jag gör i denna konstruktor, så borde jag nog skapa en ny klass som motsvarar en sammanslagning av books och authors!! ??!!???
+
+            //Istället för allt jag gör i denna konstruktor, så borde jag kanske ha skapat
+            //en ny klass som motsvarar en sammanslagning av books och authors?!
             
 
 
 
-            //--------------------------------------------------------
-            /*
-            InitializeComponent();
-
-            using var db = new BookStoreContext();
-
-            _selectedIsbn = initialStockBalance.Isbn13;
-            _selectedBookTitle = db.Books
-                .FirstOrDefault(b => b.Isbn13 == _selectedIsbn)?
-                .Title
-            ;
-            //.Where(b => b.Isbn13 == _selectedIsbn)
-            //_selectedAuthor = db.Authors
-            //.Include()
-
-
-            //using var db = new BookStoreContext();
-            var authorsAndBooks = db.Authors
-                .Include(a => a.BookIsbns)
-                .Where(a => a.BookIsbns.Any(b => b.Isbn13 == initialStockBalance.Isbn13))
-                .Select(a => a.FirstName)
-                .ToList()
-                ;
-            */
-
-
-
+            
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

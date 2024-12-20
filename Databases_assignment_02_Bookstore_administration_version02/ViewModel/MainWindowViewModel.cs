@@ -50,9 +50,7 @@ namespace Bookstore.Presentation.ViewModel
         {
             using var db = new BookStoreContext();
 
-            //StockBalances = new ObservableCollection<StockBalance>(
-            //StockBalances = new ObservableCollection<string>(
-                //db.StockBalances.Select(sb => sb.Stockbalances).ToList()
+            
 
             StoreNames = new ObservableCollection<string>(
                 db.Stores.Select(s => s.Name).Distinct().ToList()
@@ -62,23 +60,15 @@ namespace Bookstore.Presentation.ViewModel
         }
 
 
-        //private void LoadStockBalances()
+        
         public void LoadStockBalances()
         {
             using var db = new BookStoreContext();
 
-            //var testc = db.StockBalances;
-
-            ///**/
-            //StockBalances = new ObservableCollection<StockBalance>(
-            //    db.StockBalances.ToList()
-            //);
-            ///**/
-
+            /* Varning:
             //SelectedStore = StoreNames.FirstOrDefault(); // Denna kodrad orsakade en evig loop som ledde till stack overflow, för att en property-set-funktion anropade denna som anropade set-funktionen som anropade denna funktion, som anropade ...
-
-            //var stockBalances = db.StockBalances
-            //var filteredStockBalances = db.StockBalances
+            */
+            
             StockBalances = new ObservableCollection<StockBalance>(
                 db.StockBalances
                 .Include(sb => sb.Store)

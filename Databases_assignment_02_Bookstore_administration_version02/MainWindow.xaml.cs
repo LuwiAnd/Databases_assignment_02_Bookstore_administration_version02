@@ -14,7 +14,6 @@ using Bookstore.Presentation;
 using Bookstore.Presentation.ViewModel;
 
 namespace Databases_assignment_02_Bookstore_administration_version02;
-//namespace Bookstore.Presentation;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -49,10 +48,7 @@ public partial class MainWindow : Window
         
     }
 
-    //private void RemoveButton_Click(object sender, RoutedEventArgs e)
-    //{
-
-    //}
+    
 
     private void RemoveButton_Click(object sender, RoutedEventArgs e)
     {
@@ -62,7 +58,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        // Ta bort från databasen
+        // Ta bort en rad från lagersaldot i databasen för den butik användaren valt.
         using (var db = new BookStoreContext())
         {
             // Leta upp posten i databasen baserat på dess nyckel
@@ -106,9 +102,6 @@ public partial class MainWindow : Window
             .FirstOrDefault()
         ;
 
-
-
-        //db.Stores.Select(s => s.Name).Distinct().ToList()
 
         AddStockBalanceDialog addBookWindow;
         if (SelectedStockBalance == null)

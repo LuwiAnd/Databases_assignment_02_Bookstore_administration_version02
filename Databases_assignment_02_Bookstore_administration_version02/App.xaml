@@ -4,9 +4,8 @@
              xmlns:local="clr-namespace:Databases_assignment_02_Bookstore_administration_version02"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+<!--x:Class säger bara vad klassen som App.xaml.cs och detta program ligger i, eftersom de är en partial class som tillsammans blir en "hel" klass. ".App" är klassen och det som står före är namespace:t. --> 
 <!--<Application x:Class="Databases_assignment_02_Bookstore_administration_version02.App"-->
-<!--<Application x:Class="Bookstore.Presentation.ViewModel.App"-->
              <!--xmlns:local="clr-namespace:Bookstore.Presentation.ViewModel"-->
-         <!--x:Class säger bara vad klassen som App.xaml.cs och detta program ligger i, eftersom de är en partial class som tillsammans blir en "hel" klass. ".App" är klassen och det som står före är namespace:t. --> 
     </Application.Resources>
 </Application>
