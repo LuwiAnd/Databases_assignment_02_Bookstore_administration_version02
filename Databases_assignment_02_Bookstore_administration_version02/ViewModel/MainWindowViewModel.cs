@@ -86,6 +86,8 @@ namespace Bookstore.Presentation.ViewModel
                 .Where(sb => sb.Store.Name == SelectedStore)
             );
 
+            
+
             /*
             //StockBalances = new ObservableCollection<StockBalance>(stockBalances);
             StockBalances.Clear();

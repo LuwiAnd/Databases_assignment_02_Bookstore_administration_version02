@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Bookstore.Domain;
 using Bookstore.Infrastructure.Data.Model;
+using Bookstore.Presentation;
 using Bookstore.Presentation.ViewModel;
 
 namespace Databases_assignment_02_Bookstore_administration_version02;
@@ -94,6 +95,31 @@ public partial class MainWindow : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
+        var addBookWindow = new AddStockBalanceDialog();
 
+        addBookWindow.ShowDialog();
+        /*
+        if (dialog.ShowDialog() == true)
+        {
+            using (var db = new BookStoreContext())
+            {
+                var newStockBalance = new StockBalance
+                {
+                    ISBN13 = dialog.SelectedISBN13,
+                    Count = dialog.Count.Value,
+                    StoreID = db.Stores.FirstOrDefault(s => s.Name == SelectedStore)?.StoreID
+                };
+
+                db.StockBalances.Add(newStockBalance);
+                db.SaveChanges();
+            }
+
+            // Uppdatera DataGrid
+            var viewModel = (MainWindowViewModel)DataContext;
+            viewModel.LoadStockBalances();
+
+            MessageBox.Show("New stock balance added successfully.");
+        }
+        */
     }
 }
