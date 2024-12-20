@@ -90,14 +90,47 @@ public partial class MainWindow : Window
         SelectedStockBalance = null;
 
         MessageBox.Show("Stock balance removed successfully.");
+        viewModel.RaisePropertyChanged("StockBalances");
     }
 
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        var addBookWindow = new AddStockBalanceDialog();
+        using var db = new BookStoreContext();
+
+        var viewModel = (MainWindowViewModel)DataContext;
+        string selectedStoreName = viewModel.SelectedStore;
+        int selectedStoreId = db.Stores
+            .Where(s => s.Name == selectedStoreName)
+            .Select(s => s.StoreId)
+            .FirstOrDefault()
+        ;
+
+
+
+        //db.Stores.Select(s => s.Name).Distinct().ToList()
+
+        AddStockBalanceDialog addBookWindow;
+        if (SelectedStockBalance == null)
+        {
+            addBookWindow = new AddStockBalanceDialog(selectedStoreId);
+        }
+        else
+        {
+            addBookWindow = new AddStockBalanceDialog(SelectedStockBalance);
+        }
 
         addBookWindow.ShowDialog();
+
+
+
+
+
+
+        // Uppdatera DataGrid
+        viewModel.LoadStockBalances(); // Anropa en metod i ViewModel för att ladda om data
+        viewModel.RaisePropertyChanged("StockBalances");
+
         /*
         if (dialog.ShowDialog() == true)
         {

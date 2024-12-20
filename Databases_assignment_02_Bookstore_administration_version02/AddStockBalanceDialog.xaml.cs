@@ -35,8 +35,8 @@ namespace Bookstore.Presentation
 
         private int selectedStoreId;
         
-        
-        
+
+
 
 
 
@@ -137,9 +137,11 @@ namespace Bookstore.Presentation
         }
 
         // Jag ska nog göra en till konstruktor som tar emot ett ISBN-nummer från den bok man eventuellt markerat.
-        public AddStockBalanceDialog()
+        public AddStockBalanceDialog(int selectedStoreId)
         {
-            selectedStoreId = 1; // Detta ska jag ändra sen!! ??!!???
+            //selectedStoreId = 1; // Detta ska jag ändra sen!! ??!!???
+            this.selectedStoreId = selectedStoreId;
+
 
             InitializeComponent();
 
@@ -168,6 +170,49 @@ namespace Bookstore.Presentation
 
         public AddStockBalanceDialog(StockBalance? initialStockBalance)
         {
+
+            this.selectedStoreId = initialStockBalance.StoreId;
+
+
+            InitializeComponent();
+
+            using var db = new BookStoreContext();
+
+            var bookTitles = db.Books
+                .Select(b => b.Title)
+                .Distinct()
+                .ToList();
+
+
+            BookTitles = new ObservableCollection<string>(bookTitles);
+
+
+            //SelectedBookTitle = BookTitles.FirstOrDefault();
+            SelectedBookTitle = db.Books
+                .Where(b => b.Isbn13 == initialStockBalance.Isbn13)
+                .Select(b => b.Title)
+                .First()
+            ;
+
+
+            UpdateAuthorList();
+            SelectedAuthor = db.Authors
+                .Where(a => a.BookIsbns.Any(b => b.Isbn13 == initialStockBalance.Isbn13))
+                .Select(a => a.FirstName + " " + a.LastName)
+                .First()
+            ;
+
+            UpdateIsbnList();
+            SelectedIsbn = initialStockBalance.Isbn13;
+
+            DataContext = this;
+            //Istället för allt jag gör i denna konstruktor, så borde jag nog skapa en ny klass som motsvarar en sammanslagning av books och authors!! ??!!???
+            
+
+
+
+            //--------------------------------------------------------
+            /*
             InitializeComponent();
 
             using var db = new BookStoreContext();
@@ -189,13 +234,9 @@ namespace Bookstore.Presentation
                 .Select(a => a.FirstName)
                 .ToList()
                 ;
+            */
 
-            int x = 1;
 
-            //this.AuthorList = authorsAndBooks
-            //    .Include
-            //    Obser authorsAndBooks =
-            
 
         }
 
